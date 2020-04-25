@@ -72,13 +72,29 @@ export default {
       }
     }
   },
+  babel: {
+    presets: [
+      'es2015',
+      'stage-0'
+    ],
+    plugins: [
+      ['transform-runtime', {
+        'polyfill': true,
+        'regenerator': true,
+      }]
+    ],
+  },
   /*
    ** Build configuration
    */
+  buildDir: "../functions/nuxt",
   build: {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    publicPath: '/public/',
+    vendor: ['axios'],
+    extractCSS: true,
+    extend(config, ctx) { }
   }
 }
