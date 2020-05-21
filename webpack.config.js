@@ -14,7 +14,8 @@ module.exports = {
     //  出力ファイルのディレクトリ名
     path: `${__dirname}/dist`,
     // 出力ファイル名
-    filename: "main.js"
+    filename: "main.js",
+    publicPath: '/'
   },
   devtool: 'inline-source-map',
   module: {
@@ -29,7 +30,12 @@ module.exports = {
   },
   // import 文で .ts や .tsx ファイルを解決するため
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      "@models/*": path.join(__dirname, "src/domain/models"),
+      "@molecules": path.join(__dirname, "src/components/molecules"),
+      "@pages": path.join(__dirname, "src/pages")
+    }
   },
   plugins: [
     new Dotenv(),
@@ -38,6 +44,7 @@ module.exports = {
     )],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
+    historyApiFallback: true,
     compress: true,
     port: 3000,
   },

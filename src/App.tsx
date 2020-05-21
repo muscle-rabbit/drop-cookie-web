@@ -1,36 +1,26 @@
 import * as React from "react"
-import CookieMap from "./CookieMap"
-import { AppBar, Toolbar, IconButton, Typography, Button, Container, Box } from "@material-ui/core";
-import styled from "styled-components"
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-interface IProps {
-}
+import CookieMap from "@pages/CookieMap"
+import Home from '@pages/Home';
+import Notfound from '@pages/Notfound';
+
+interface IProps { }
 
 const App: React.SFC<IProps> = ({ ...props }) => (
-  <Wrapper {...props} className="fafd">
-    <AppBar position="static" >
-      <Container maxWidth="sm">
-        <FlexToolbar >
-          <Typography variant="h6" >
-            Cookie Map
-          </Typography>
-        </FlexToolbar>
-      </Container>
-    </AppBar>
-    <Container maxWidth="sm">
-      <CookieMap />
-    </Container>
-  </Wrapper >
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/cookieMap" component={CookieMap} />
+      <Route path="/notfound" component={Notfound} />
+      <Route component={Notfound} />
+    </Switch>
+  </BrowserRouter>
 );
+
+
 
 export default App;
 
-const Wrapper = styled.div`
-  height: 100%;
-`
 
-const FlexToolbar = styled(Toolbar)`
-  display: flex;
-  justify-content: center;
-`
 
