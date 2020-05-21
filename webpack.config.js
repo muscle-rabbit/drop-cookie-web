@@ -1,5 +1,6 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
@@ -30,12 +31,17 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
-  plugins: [new HtmlWebpackPlugin(
-    { template: path.join(__dirname, 'index.html') }
-  )],
+  plugins: [
+    new Dotenv(),
+    new HtmlWebpackPlugin(
+      { template: path.join(__dirname, 'index.html') }
+    )],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3000,
+  },
+  node: {
+    fs: "empty"
   }
 };
