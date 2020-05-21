@@ -11,7 +11,20 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@models/*": [
+        "domain/models/*"
+      ],
+      "@molecules/*": [
+        "components/molecules/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"
