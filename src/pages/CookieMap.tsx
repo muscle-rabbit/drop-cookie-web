@@ -1,43 +1,40 @@
 import * as React from "react"
 import { useLocation, useHistory } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { AppBar, Toolbar, IconButton, Typography, Button, Container, Box } from "@material-ui/core";
+import { CookieMapVars, GET_COOKIEMAP, CookieMapData, } from "../graphql/cookieMap";
+import { useQuery } from "@apollo/react-hooks"
 import styled from "styled-components"
-import firebase, { db } from '../Firebase';
 
-import { CookieMapModel } from "@models/cookieMap"
 import Header from "@molecules/Header"
+import { CookieMapModel } from '@models/cookieMap';
 
 interface IProps { }
 
 const CookieMap: React.SFC<IProps> = ({ ...props }) => {
-  const [cookieMap, setCookieMap] = useState<CookieMapModel>(null);
   const query = new URLSearchParams(useLocation().search);
   const history = useHistory();
-
-  async function fetchCookieMap(id: string) {
-    const response = await db.collection("cookieMaps").doc(id).get()
-    console.log(response)
-  }
-
-  function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
-
+  const id = query.get("id")
   useEffect(() => {
-    const id = query.get("id")
     if (id === null) {
       alert("id not found")
       return history.push("/")
     }
-    fetchCookieMap(id)
   })
-
+  const { loading, data } = useQuery<CookieMapData, CookieMapVars>(
+    GET_COOKIEMAP,
+    { variables: { id: id } }
+  );
+  if (loading) return <p>loading</p>
+  const cookieMap = data.cookieMap
+  const cid = cookieMap.id
+  console.log(typeof cid)
   return (
     <Wrapper {...props} >
       <Header />
       <Container maxWidth="sm">
-        <div>cookie map page</div>
+        <div>cookie map page </div>
+        <p>{{ cid }}</p>
       </Container>
     </Wrapper >
   )
