@@ -8,6 +8,8 @@ import styled from "styled-components"
 
 import Header from "@molecules/Header"
 import { CookieMapModel } from '@models/cookieMap';
+import Loading from '../components/organisms/Loading';
+import CookieMapOrganism from "../components/organisms/CookieMap"
 
 interface IProps { }
 
@@ -25,16 +27,22 @@ const CookieMap: React.SFC<IProps> = ({ ...props }) => {
     GET_COOKIEMAP,
     { variables: { id: id } }
   );
-  if (loading) return <p>loading</p>
-  const cookieMap = data.cookieMap
-  const cid = cookieMap.id
-  console.log(typeof cid)
+
+  if (loading) {
+    return (
+      <Wrapper {...props} >
+        <Header />
+        <Container maxWidth="sm">
+          <Loading />
+        </Container>
+      </Wrapper >
+    )
+  }
   return (
     <Wrapper {...props} >
       <Header />
       <Container maxWidth="sm">
-        <div>cookie map page </div>
-        <p>{{ cid }}</p>
+        <CookieMapOrganism cookieMap={data.cookieMap} />
       </Container>
     </Wrapper >
   )

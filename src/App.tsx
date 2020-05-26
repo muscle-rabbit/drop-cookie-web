@@ -12,7 +12,7 @@ interface IProps { }
 const App: React.SFC<IProps> = ({ ...props }) => {
   console.log(process.env.NODE_ENV)
   const client = new ApolloClient(process.env.NODE_ENV !== 'production' ? {
-    uri: "http://localhost:8080/graphql"
+    uri: "https://drop-cookie-1587274488890.an.r.appspot.com/graphql"
   } : {});
 
   return <ApolloProvider client={client}>

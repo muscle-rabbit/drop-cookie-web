@@ -5,15 +5,13 @@ import { useQuery } from "@apollo/react-hooks"
 import { CircularProgress } from '@material-ui/core';
 
 interface IProps {
-  cookiMapID: string
+  cookieMap: CookieMapModel
 }
 
-const CookieMap: React.SFC<IProps> = (props) => {
-  const { loading, data, error } = useQuery<CookieMapData, CookieMapVars>(
-    GET_COOKIEMAP,
-    { variables: { id: props.cookiMapID } }
-  );
-  return loading ? <div>
-    {{ data }}
-  </div> : <div>now loading</div>
+const CookieMap: React.SFC<IProps> = ({ cookieMap }) => {
+  return <div>
+    {cookieMap.id}
+  </div>
 }
+
+export default CookieMap
