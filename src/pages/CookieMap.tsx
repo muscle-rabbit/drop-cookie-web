@@ -41,8 +41,13 @@ const CookieMap: React.SFC<IProps> = ({ ...props }) => {
   return (
     <Wrapper {...props} >
       <Header />
-      <Container maxWidth="sm">
-        <CookieMapOrganism cookieMap={data.cookieMap} />
+      <Container
+        maxWidth="sm"
+        className="container"
+      >
+        <CookieMapOrganism
+          cookieMap={data.cookieMap}
+        />
       </Container>
     </Wrapper >
   )
@@ -58,3 +63,4 @@ const FlexToolbar = styled(Toolbar)`
   display: flex;
   justify-content: center;
 `
+

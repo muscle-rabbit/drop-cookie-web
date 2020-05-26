@@ -3,7 +3,7 @@ export interface CookieMapModel {
   title: string
   description: string
   createdAt: Date
-  positions: []
+  positions: Array<MarkedPosition>
 }
 
 export interface MarkedPosition {
@@ -11,3 +11,4 @@ export interface MarkedPosition {
   longitude: number
   latitude: number
 }
+
