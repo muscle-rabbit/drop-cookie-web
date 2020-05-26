@@ -35,6 +35,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.production.config.js",
+    "build:dev": "webpack --config webpack.development.config.js",
     "watch": "webpack -w",
     "dev": "webpack-dev-server --config webpack.development.config.js --progress"
   },
