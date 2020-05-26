@@ -32,7 +32,7 @@ const CookieMap: React.SFC<IProps> = ({ ...props }) => {
     return (
       <Wrapper {...props} >
         <Header />
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
           <Loading />
         </Container>
       </Wrapper >
@@ -42,8 +42,7 @@ const CookieMap: React.SFC<IProps> = ({ ...props }) => {
     <Wrapper {...props} >
       <Header />
       <Container
-        maxWidth="sm"
-        className="container"
+        maxWidth="md"
       >
         <CookieMapOrganism
           cookieMap={data.cookieMap}
