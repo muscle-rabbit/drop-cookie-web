@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/react-hooks"
 import styled from "styled-components"
 
 import Header from "@molecules/Header"
-import { CookieMapModel } from '@models/cookieMap';
+import { CookieMapModel } from '@models/CookieMap';
 import Loading from '../components/organisms/Loading';
 import CookieMapOrganism from "../components/organisms/CookieMap"
 
